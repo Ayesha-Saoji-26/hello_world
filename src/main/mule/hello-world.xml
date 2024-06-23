@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="6343fa44-ab13-4a5e-b687-bf91db15ede7" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="hello-world" doc:id="25c20386-b1a3-4c80-9cb4-08dd3c7461a0" >
+		<http:listener doc:name="Listener" doc:id="310fbb60-39a7-4e0b-a5b9-f29de4e81a44" config-ref="HTTP_Listener_config" path="/test"/>
+		<logger level="INFO" doc:name="Log Flow Start" doc:id="9c1c43be-dda4-4bf3-85af-33231c727cba" message='#[flow.name ++ " stared."]'/>
+		<set-payload value='#["Welcome to MuleSoft!!"]' doc:name="Set Msg" doc:id="698cf25e-a9bb-400e-8dfb-2bb17e0ce316" />
+		<logger level="INFO" doc:name="Log Payload" doc:id="92a0f1f1-f297-4b47-be4c-f7846c4f7c3a" message="Payload : #[payload]"/>
+		<logger level="INFO" doc:name="Log Flow End" doc:id="33acff8a-5936-4fc8-86f1-d5cf11e36833" message='#[flow.name ++ " ended."]'/>
+	</flow>
+</mule>
